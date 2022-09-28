@@ -1,0 +1,20 @@
+.profileHeader {
+    margin-top: -10px;
+}
+
+
+@media (max-width: 425px) and (min-width: 319px) {
+    .mobileBasket{
+        padding-left: 48%;
+    }
+  } 
+@media (max-width: 769px) and (min-width: 424px) {
+    .mobileBasket{
+        padding-left: 68%;
+    }
+  } 
+@media (max-width:320px) {
+    .mobileBasket{
+        padding-left: 40%;
+    }
+}

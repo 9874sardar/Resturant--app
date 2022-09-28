@@ -1,0 +1,6 @@
+.P-tag-div > p{
+    /* width: 100%; */
+    padding: 6px;
+    text-align: center;
+    border-radius: 0.5rem;
+}
