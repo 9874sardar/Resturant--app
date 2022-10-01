@@ -1,0 +1,6 @@
+
+restaurants-app/node_modules/.bin/acorn
+*.cmd
+*.ps1
+restaurants-app/node_modules
+*.json
