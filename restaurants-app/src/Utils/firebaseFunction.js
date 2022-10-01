@@ -18,8 +18,7 @@ export const saveItem = async (data) => {
 //getall food items
 export const getAllFoodItems = async () =>{
   // get docs is used to recived all the document / details from firestore database
-    const items = await getDocs( 
-      query(collection(firestore, "foodItems"), orderBy("id","desc"))
+    const items = await getDocs(query(collection(firestore, "foodItems"), orderBy("id","desc"))
     );
 
     return items.docs.map((doc) => doc.data());

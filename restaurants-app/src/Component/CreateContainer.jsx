@@ -15,6 +15,9 @@ import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from "firebas
 import { storage } from "../firebase.config";
 import { snapshotEqual } from "firebase/firestore";
 import { saveItem } from "../Utils/firebaseFunction";
+import { useStateValue } from "../Context/StateProvider";
+import { getAllFoodItems } from "../Utils/firebaseFunction";
+import { actionType } from "../Context/reducer";
 
 function CreateContainer() {
   const [title, setTitle] = useState("");
@@ -26,6 +29,16 @@ function CreateContainer() {
   const [msg, setMsg] = useState(null);
   const [imageAsset, setImageAsset] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [{foodItems}, dispatch] = useStateValue();
+
+  const fetchData = async () => {
+    await getAllFoodItems().then((data) => {
+      dispatch({
+        type : actionType.SET_FOOD_ITEMS,
+        foodItems : data ,
+    })
+    });
+  };
 
   const uploadImage = (e) => {
     setIsLoading(true);
@@ -119,6 +132,8 @@ function CreateContainer() {
         setIsLoading(false);
       }, 4000);
     }
+
+    fetchData();
   };
 
   const clearData = () =>{
@@ -126,7 +141,7 @@ function CreateContainer() {
     setImageAsset(null);
     setCalories("");
     setPrice("");
-    setCalories("Select Category")
+    setCalories("Select calories")
   }
 
   return (
