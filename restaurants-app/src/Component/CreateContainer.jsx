@@ -13,7 +13,6 @@ import { categories } from "../Utils/Data";
 import Loader from "./Loader";
 import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../firebase.config";
-import { snapshotEqual } from "firebase/firestore";
 import { saveItem } from "../Utils/firebaseFunction";
 import { useStateValue } from "../Context/StateProvider";
 import { getAllFoodItems } from "../Utils/firebaseFunction";

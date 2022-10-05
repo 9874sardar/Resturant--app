@@ -5,15 +5,15 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import RowContainer from "./RowContainer";
 import { useStateValue } from "../Context/StateProvider";
 import { useRef } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import MenuContainer from "./MenuContainer";
 
 function MainContainer() {
   const [{ foodItems }, dispatch] = useStateValue();
+  const [scrollValue, setScrollValue] = useState(0);
 
-  // const rowContainerRef = useRef();
-
-  // const scroll = (scrollOffset) =>{
-  //   rowContainerRef.current.scrollLeft += scrollOffset;
-  // }
+  useEffect(() => {}, [scrollValue]);
 
   return (
     <div className="w-full h-auto flex flex-col items-center justify-center ">
@@ -31,30 +31,33 @@ function MainContainer() {
           <div className="hidden md:flex items-center">
             {/* //Two different buttons */}
             <motion.div
-              whileTap={{ scale: 0.75 }}
+              whiletap={{ scale: 0.75 }}
               className="w-8 h-8 rounded-lg bg-orange-300 hover:bg-orange-500 cursor-pointer
-            transition-all duration-100 ease-in-out hover:shadow-lg flex items-center justify-center "
-            // onClick={()=> scroll()}
+             hover:shadow-lg flex items-center justify-center "
+              onClick={() => setScrollValue(-200)}
             >
               <MdChevronLeft className="text-lg text-white" />
             </motion.div>
             <motion.div
-              whileTap={{ scale: 0.75 }}
+              whiletap={{ scale: 0.75 }}
               className="w-8 h-8 rounded-lg bg-orange-300 hover:bg-orange-500 cursor-pointer
-            transition-all duration-100 ease-in-out hover:shadow-lg flex items-center justify-center "
+             hover:shadow-lg flex items-center justify-center "
+              onClick={() => setScrollValue(200)}
             >
               <MdChevronRight className="text-lg text-white" />
             </motion.div>
           </div>
         </div>
         <RowContainer
-        // ref={rowContainerRef}
+          scrollValue={scrollValue}
           flag={false}
           data={foodItems?.filter((n) => n.category === "fruits")}
         />
         {/* //if the value is true it will act as fruit section
         //if the value is false it will act as main menu section */}
       </section>
+
+      <MenuContainer/>
     </div>
   );
 }

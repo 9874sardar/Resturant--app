@@ -19,14 +19,14 @@ export const heropData = [
     imageSrc: Strawberry,
   },
   {
-    id: 1,
+    id: 3,
     name: "Chicken kebab",
     desciption: "Mixed Kabab plate",
     price: "8.25$",
     imageSrc: kebab,
   },
   {
-    id: 1,
+    id: 4,
     name: "Fish kebab",
     desciption: "Mixed fish Kebab",
     price: "6.25$",
