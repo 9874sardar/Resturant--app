@@ -8,12 +8,13 @@ import { useRef } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import MenuContainer from "./MenuContainer";
+import CartContainer from "./CartContainer";
 
 function MainContainer() {
-  const [{ foodItems }, dispatch] = useStateValue();
+  const [{ foodItems , cartShow }, dispatch] = useStateValue();
   const [scrollValue, setScrollValue] = useState(0);
 
-  useEffect(() => {}, [scrollValue]);
+  useEffect(() => {}, [scrollValue , cartShow]);
 
   return (
     <div className="w-full h-auto flex flex-col items-center justify-center ">
@@ -51,13 +52,15 @@ function MainContainer() {
         <RowContainer
           scrollValue={scrollValue}
           flag={false}
-          data={foodItems?.filter((n) => n.category === "fruits")}
+          data={foodItems?.filter((n) => n.category === "icecreams")}
         />
         {/* //if the value is true it will act as fruit section
         //if the value is false it will act as main menu section */}
       </section>
 
       <MenuContainer/>
+
+      {cartShow && <CartContainer/>}
     </div>
   );
 }

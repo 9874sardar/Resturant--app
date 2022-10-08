@@ -15,9 +15,10 @@ function Header() {
   const firebaseAuth = getAuth(app);
   const provider = new GoogleAuthProvider();
 
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user , cartShow, cartItem }, dispatch] = useStateValue();
 
   const [isMenu, setIsMenu] = useState(false);
+  const [toggle, setToggle] = useState(cartShow);
 
   const Login = async () => {
     if (!user) {
@@ -47,6 +48,13 @@ function Header() {
     dispatch({
       type: actionType.SET_USER,
       user: null,
+    });
+  };
+
+  const showCart = () => {
+    dispatch({
+      type: actionType.SET_CART_SHOW,
+      cartShow: !cartShow,
     });
   };
 
@@ -100,14 +108,15 @@ function Header() {
               Service
             </li>
           </motion.ul>
-          <div className="relative flex item-center justify-center">
+          {/* <div className="relative flex item-center justify-center" onClick={showCart}> */}
+          <div className="relative flex item-center justify-center" onClick={showCart}>
             <BsFillBasket3Fill className="text-textColor text-2xl cursor-pointer" />
-            <div
+            {cartItem && cartItem.length > 0 && <div
               className="absolute -top-4 -right-3 w-5 h-5 rounded-full bg-cartNumBg 
               flex item-center justify-center"
             >
-              <p className="text-xs text-white font-semiBold">2</p>
-            </div>
+              <p className="text-xs text-white font-semiBold">{cartItem.length}</p>
+            </div>}
           </div>
 
           <div>
@@ -165,14 +174,14 @@ function Header() {
           />
           <p className="text-headingColor text-xl font-bold">City</p>
         </Link>
-        <div className="relative flex mobileBasket item-center justify-center">
+        <div className="relative flex mobileBasket item-center justify-center" onClick={showCart}>
           <BsFillBasket3Fill className="text-textColor text-2xl cursor-pointer" />
-          <div
+          {cartItem && cartItem.length > 0 && <div
             className="absolute -top-4 -right-3 w-5 h-5 rounded-full bg-cartNumBg 
               flex item-center justify-center"
           >
-            <p className="text-xs text-white font-semiBold">2</p>
-          </div>
+            <p className="text-xs text-white font-semiBold">{cartItem.length}</p>
+          </div>}
         </div>
         <div>
           <motion.img
